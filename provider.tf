@@ -6,11 +6,3 @@ terraform {
     }
   }
 }
-
-variable "hcloud_api_token" {
-  type = string
-}
-
-provider "hcloud" {
-  token = var.hcloud_api_token
-}
