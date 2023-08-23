@@ -34,6 +34,6 @@ resource "hcloud_server" "k8s_nodes" {
   }
 
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},' ./provisioning/ansible/playbook.yml"
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u root -i '${self.ipv4_address},' ${path.module}/provisioning/ansible/playbook.yml"
   }
 }
