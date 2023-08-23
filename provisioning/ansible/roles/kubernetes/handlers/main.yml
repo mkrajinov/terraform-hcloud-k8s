@@ -1,0 +1,9 @@
+---
+- name: Update APT package cache
+  apt:
+    update_cache: yes
+- name: Restart kubelet service
+  service:
+    name: kubelet
+    state: restarted
+    enabled: true

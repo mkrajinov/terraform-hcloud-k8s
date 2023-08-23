@@ -1,0 +1,6 @@
+- name: Post build setup - control plan & nodes
+  hosts: all
+  become: true
+  roles:
+    - containerd
+    - kubernetes
