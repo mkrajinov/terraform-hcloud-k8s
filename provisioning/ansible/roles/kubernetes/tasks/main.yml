@@ -47,11 +47,8 @@
     line: 'Environment="KUBELET_EXTRA_ARGS=--cloud-provider=external"'
     create: yes
 
-- name: Reload systemd
-  ansible.builtin.systemd:
-    state: reloaded
-
 - name: Restart kubelet
   ansible.builtin.systemd:
+    daemon_reload: true
     name: kubelet
     state: restarted
