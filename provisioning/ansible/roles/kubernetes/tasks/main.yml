@@ -40,3 +40,18 @@
     - kubelet
     - kubeadm
     - kubectl
+
+- name: Configure kubelet service to enable Hetzner Cloud Provider
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/system/kubelet.service.d/20-hcloud.conf
+    line: 'Environment="KUBELET_EXTRA_ARGS=--cloud-provider=external"'
+    create: yes
+
+- name: Reload systemd
+  ansible.builtin.systemd:
+    state: reloaded
+
+- name: Restart kubelet
+  ansible.builtin.systemd:
+    name: kubelet
+    state: restarted

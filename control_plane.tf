@@ -31,6 +31,6 @@ resource "hcloud_server" "k8s_control_plane" {
   }
 
   provisioner "remote-exec" {
-    inline = ["kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-cert-extra-sans=${var.control_plane.ip}"]
+    inline = ["kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=${var.control_plane.ip} --apiserver-cert-extra-sans=${self.ipv4_address}"]
   }
 }
